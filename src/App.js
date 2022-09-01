@@ -7,12 +7,16 @@ import Home from '../src/pages/home/Home'
 import Login from '../src/pages/login/Login'
 import Signup from '../src/pages/signup/Signup'
 import Navbar from './components/Navbar';
+import { useTheme } from './hooks/useTheme';
 
 
+// styles
+import './App.css'
 
 function App() {
+  const { mode } = useTheme();
   return (
-    <div className="App">
+    <div className={`App ${mode}`}>
       <BrowserRouter >
       <Navbar />
         <Switch>
