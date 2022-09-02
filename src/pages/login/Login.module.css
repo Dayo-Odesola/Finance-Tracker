@@ -17,3 +17,14 @@
   color: #777;
   width: 100%;
 }
+
+.login-form.dark {
+  color: #C1C2C5
+}
+
+.login-form.dark input {
+  background: #25262B;
+  outline: 0;
+  border: 2px solid ;
+  border-color: #25262B;
+}

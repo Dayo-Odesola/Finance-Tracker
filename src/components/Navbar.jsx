@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom'
 import { useTheme } from '../hooks/useTheme'
 import { useLogout } from '../hooks/useLogout'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 // styles
 import styles from './Navbar.module.css'
 
 export default function Navbar() {
   const { logout } = useLogout()
+  const { user } = useAuthContext()
 
   const { changeMode, mode } = useTheme();
 
@@ -22,14 +24,23 @@ export default function Navbar() {
         <li className={styles.title}>myMoney 🤑 </li>
 
 
-        <button onClick={toggleMode} className='btn'>changeTheme</button>
+        <li onClick={toggleMode}> <a style={{cursor: 'pointer'}}>💡</a></li>
 
-        <li><Link to='/login'>Login</Link></li>
-        <li><Link to='/signup'>Signup</Link></li>
-
-        <li>
-          <button className="btn" onClick={logout}>Logout</button>
-        </li>
+        {!user && (
+          <>
+           <li><Link to='/login'>Login</Link></li>
+           <li><Link to='/signup'>Signup</Link></li>
+         </>
+        )}
+       
+        {user && (
+          <>
+            <li>hello, {user.displayName}</li>
+            <li>
+              <button className="btn" onClick={logout}>Logout</button>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   )
