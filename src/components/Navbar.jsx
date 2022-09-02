@@ -20,7 +20,7 @@ export default function Navbar() {
         <li className={styles.title}>myMoney 🤑 </li>
 
 
-        <button onClick={toggleMode}>changeTheme</button>
+        <button onClick={toggleMode} className='btn'>changeTheme</button>
 
         <li><Link to='/login'>Login</Link></li>
         <li><Link to='/signup'>Signup</Link></li>
