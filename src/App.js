@@ -1,4 +1,5 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { useAuthContext } from './hooks/useAuthContext'
 
 
 
@@ -12,11 +13,16 @@ import { useTheme } from './hooks/useTheme';
 
 // styles
 import './App.css'
+import Loader from './components/Loader'
 
 function App() {
+  const { authIsReady }= useAuthContext()
+
   const { mode } = useTheme();
   return (
     <div className={`App ${mode}`}>
+      {!authIsReady && <Loader />}
+      {authIsReady && (
       <BrowserRouter >
       <Navbar />
         <Switch>
@@ -31,6 +37,7 @@ function App() {
           </Route>
         </Switch>
       </BrowserRouter>
+      )}
     </div>
   );
 }
