@@ -15,5 +15,17 @@
   padding: 8px 6px;
   font-size: 1em;
   color: #777;
+  outline: 0;
   width: 100%;
+}
+
+.signup-form.dark {
+  color: #C1C2C5
+}
+
+.signup-form.dark input {
+  background: #25262B;
+  outline: 0;
+  border: 2px solid ;
+  border-color: #25262B;
 }

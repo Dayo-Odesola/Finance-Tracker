@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSignup } from '../../hooks/useSignup';
+import { useTheme } from '../../hooks/useTheme';
 
 // styles
 import styles from './Signup.module.css'
@@ -16,8 +17,10 @@ export default function Signup() {
     signup(email, password, displayName)
   }
 
+  const { mode } = useTheme()
+
   return (
-    <form onSubmit={handleSubmit} className={styles['signup-form']}>
+    <form onSubmit={handleSubmit} className={`${styles[`signup-form`]} ${styles[`${mode}`]}`}>
       <h2>Signup</h2>
       <label>
         <span>email:</span>
@@ -47,7 +50,7 @@ export default function Signup() {
       </label>
 
       {!isPending && <button className='btn'>Signup</button>}
-      {isPending && <button className='btn' disabled>loading</button>}
+      {isPending && <button className='btn' >loading</button>}
       {error && <p>{error}</p>}
     </form>
   )
