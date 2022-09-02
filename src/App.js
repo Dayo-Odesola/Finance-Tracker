@@ -1,5 +1,5 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { useAuthContext } from './hooks/useAuthContext'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { useAuthContext, user } from './hooks/useAuthContext'
 
 
 
@@ -16,7 +16,7 @@ import './App.css'
 import Loader from './components/Loader'
 
 function App() {
-  const { authIsReady }= useAuthContext()
+  const { authIsReady, user }= useAuthContext()
 
   const { mode } = useTheme();
   return (
@@ -27,13 +27,16 @@ function App() {
       <Navbar />
         <Switch>
           <Route exact path='/'>
-            <Home />
+            {!user && <Redirect to="Login" />}
+            {user && <Home />}
           </Route>
           <Route path='/login'>
-            <Login />
+            {user && <Redirect to='/' />}
+            {!user &&  <Login />}
           </Route>
           <Route path='/signup'>
-            <Signup />
+            {user && <Redirect to='/' />}
+            {!user && <Signup />}
           </Route>
         </Switch>
       </BrowserRouter>

@@ -20,7 +20,7 @@ export default function Login() {
   const { mode } = useTheme()
 
   return (
-    <form onSubmit={handleSubmit} className={`${styles['login-form']} ${styles[mode]}`}>
+    <form onSubmit={handleSubmit} className={`${styles['login-form']} ${styles[`${mode}`]}`}>
       <h2>Login</h2>
       <label>
         <span>email:</span>
